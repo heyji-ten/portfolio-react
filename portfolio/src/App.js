@@ -13,9 +13,20 @@ function App() {
       5. 프로젝트
         5-1. 깃허브 및 프리뷰 링크
         5-2. 작업하면서 막혔던 부분, 해결한 방법 간단하게 보기좋게 입력 */}
-      <header>
 
-      </header>
+        {/* header */}
+        <nav id="nav">
+          <div className="navbar">
+            <div className="logo"></div>
+            <ul className="menu">
+              <li className='menu-item active'>ABOUT</li>
+              <li className='menu-item'>SKILL</li>
+              <li className='menu-item'>PROJECT</li>
+              <li className='menu-item'>STUDY</li>
+              <li className='menu-item'>CONTACT</li>
+            </ul>
+          </div>
+        </nav>
     </div>
   );
 }
