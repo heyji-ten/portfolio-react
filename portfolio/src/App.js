@@ -5,12 +5,52 @@ import './App.css';
 import styled from 'styled-components';
 import './main.scss';
 import Profile from './profile.png';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+
+import ReactDOM from 'react-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight,faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios';
 
 import Data from './project-data.js';
 
+// Animation
+import ChangingProgressProvider from "./ChangingProgressProvider";
+
+
 function App() {
 
-  let [project, projectFix] = useState(Data);
+  let [project, setProject] = useState(Data);
+
+  let [slider, setSlider] = useState(0);
+
+  let count = Object.keys(project).length;
+
+  const right = <FontAwesomeIcon icon={faChevronRight} />
+  const left = <FontAwesomeIcon icon={faChevronLeft} />
+
+
+  function leftBtn() {
+
+    if (slider > 0) {
+      var projectCopy = (project[slider].id-1);
+      setSlider(projectCopy);
+    } else {
+      setSlider((count-1));
+    }
+  }
+
+  function rightBtn() {
+
+    if (slider < (count-1)){
+    var projectCopy = (project[slider].id+1);
+    setSlider(projectCopy);
+  } else {
+    setSlider(0);
+  }
+}
+
 
   return (
     <div className="App">
@@ -57,9 +97,9 @@ function App() {
                 <p className='about-me'>안녕하세요. 주니어 프론트엔드 개발자 남궁혜지입니다. ~~~~~자기소개부분입니다.</p>
                 <p>인천재능대학교</p>
                 <p>컴퓨터정보과 졸업</p>
-                <div className='but-box'>
+                <div className='btn-box'>
                   <a href='이력서.pdf' download>이력서PDF</a>
-                  <a href="https://github.com/heyji-ten" target="_blank">깃허브(아이콘)</a>
+                  <a href="https://github.com/heyji-ten" target="_blank">GIT</a>
                 </div>
               </div>
             </div>
@@ -83,7 +123,19 @@ function App() {
             <div className='skill'>
               <h3>HTML <span className='paercent'>60%</span></h3>
               <div className='skill-bar'>
-                <div className="progress" data-percent="60">
+                <div className="progress">
+                <ChangingProgressProvider values={[0, 60]}>
+        {percentage => (
+          <CircularProgressbar
+            value={percentage}
+            text={`${60}%`}
+            styles={buildStyles({
+              pathTransition:
+                percentage === 0 ? "none" : "stroke-dashoffset 0.5s ease 0s"
+            })}
+          />
+        )}
+      </ChangingProgressProvider>
                   <span></span>
                 </div>
               </div>
@@ -96,13 +148,13 @@ function App() {
           <div className='sec-box'>
             <h2>Project</h2>
             <div className='slider'>
-            {
-              project.map((a,i)=>{
-              return <Project project={project[i]} i={i} key={i} />
-            })
-            }
 
-            {/* 1. < 클릭시 a.id값이 -1됨. > 클릭시 a.id값이 +1 됨
+              <button className='left-btn' onClick={leftBtn}>{left}</button>
+              <button className='right-btn' onClick={rightBtn}>{right}</button>
+
+              <Project slider={slider} project={project}/>
+
+            {/* 1. < 클릭시 a.id값이 -1됨. > 클릭시 a.id값이 +1 됨 - ok
             2. 0에서 < 누르면 가장 높은 id값으로 이동
             3. 가장높은 id값에서 > 를 누르면 0으로 이동 */}
 
@@ -151,13 +203,14 @@ function App() {
 function Project(props) {
   return (
     <div className='project-container'>
-      <img src={'/preview/preview' + (props.i+1) + '.jpg'}></img>
-      <h4>{props.project.title}</h4>
-      <p>{props.project.content}</p>
-      <p>{props.project.explain}</p>
-      <p>{props.project.language}</p>
+      <img src={'/preview/preview' + (props.slider+1) + '.jpg'}></img>
+      <h4>{props.project[props.slider].title}</h4>
+      <p>{props.project[props.slider].content}</p>
+      <p>{props.project[props.slider].explain}</p>
+      <p>{props.project[props.slider].language}</p>
     </div>
   )
 }
+
 
 export default App;
