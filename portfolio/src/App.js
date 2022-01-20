@@ -82,7 +82,7 @@ function App() {
         {/* about */}
         <section id="about">
           <div className="sec-box">
-
+            <div style={{height:'600px'}}></div>
           </div>
         </section>
 
@@ -95,11 +95,11 @@ function App() {
               <div className='txt-box'>
                 <h3>HYEJI NAMGUNG</h3>
                 <p className='about-me'>안녕하세요. 주니어 프론트엔드 개발자 남궁혜지입니다. ~~~~~자기소개부분입니다.</p>
-                <p>인천재능대학교</p>
-                <p>컴퓨터정보과 졸업</p>
+                <p>인천재능대학교<br/>
+                컴퓨터정보과 졸업</p>
                 <div className='btn-box'>
-                  <a href='이력서.pdf' download>이력서PDF</a>
-                  <a href="https://github.com/heyji-ten" target="_blank">GIT</a>
+                  <a className='pdf-btn' href='이력서.pdf' download>이력서 다운로드</a>
+                  <a className='git-btn' href="https://github.com/heyji-ten" target="_blank">GIT</a>
                 </div>
               </div>
             </div>
@@ -109,9 +109,12 @@ function App() {
         <section id="career">
           <div className='sec-box'>
             <h2>career</h2>
-            <p className='title'><span className='company'>온라이프</span> - 인턴 6개월(2021. ~ 2022.02)</p>
+            <p className='title'><span className='company'>온라이프</span> - 인턴 6개월 (2021. ~ 2022.02)</p>
             <p className='content'>
               워드프레스, HTML, CSS, JavaScript를 사용한 웹퍼블리싱
+            </p>
+            <p className='career-cont'>
+              워드프레스를 사용하여 홈페이지를 세팅, 제작하는 법을 배웠으며, 그로인한 HTML, CSS 능력이 향상되었다.
             </p>
           </div>
         </section>
@@ -120,26 +123,83 @@ function App() {
         <section id="skill">
           <div className='sec-box'>
             <h2>Skills</h2>
-            <div className='skill'>
-              <h3>HTML <span className='paercent'>60%</span></h3>
               <div className='skill-bar'>
                 <div className="progress">
                 <ChangingProgressProvider values={[0, 60]}>
-        {percentage => (
-          <CircularProgressbar
-            value={percentage}
-            text={`${60}%`}
-            styles={buildStyles({
-              pathTransition:
-                percentage === 0 ? "none" : "stroke-dashoffset 0.5s ease 0s"
-            })}
-          />
-        )}
-      </ChangingProgressProvider>
-                  <span></span>
+                {percentage => (
+                  <CircularProgressbar
+                    value={percentage}
+                    text={`${60}%`}
+                    styles={buildStyles({
+                      pathTransition:
+                        percentage === 0 ? "none" : "stroke-dashoffset 0.5s ease 0s"
+                    })}
+                  />
+                )}
+              </ChangingProgressProvider>
+              <h3>HTML</h3>
+                </div>
+                <div className="progress">
+                <ChangingProgressProvider values={[0, 60]}>
+                {percentage => (
+                  <CircularProgressbar
+                    value={percentage}
+                    text={`${55}%`}
+                    styles={buildStyles({
+                      pathTransition:
+                        percentage === 0 ? "none" : "stroke-dashoffset 0.5s ease 0s"
+                    })}
+                  />
+                )}
+              </ChangingProgressProvider>
+              <h3>CSS </h3>
+                </div>
+                <div className="progress">
+                <ChangingProgressProvider values={[0, 60]}>
+                {percentage => (
+                  <CircularProgressbar
+                    value={percentage}
+                    text={`${35}%`}
+                    styles={buildStyles({
+                      pathTransition:
+                        percentage === 0 ? "none" : "stroke-dashoffset 0.5s ease 0s"
+                    })}
+                  />
+                )}
+              </ChangingProgressProvider>
+              <h3>JavaScript</h3>
+                </div>
+                <div className="progress">
+                <ChangingProgressProvider values={[0, 60]}>
+                {percentage => (
+                  <CircularProgressbar
+                    value={percentage}
+                    text={`${25}%`}
+                    styles={buildStyles({
+                      pathTransition:
+                        percentage === 0 ? "none" : "stroke-dashoffset 0.5s ease 0s"
+                    })}
+                  />
+                )}
+              </ChangingProgressProvider>
+              <h3>React</h3>
+                </div>
+                <div className="progress">
+                <ChangingProgressProvider values={[0, 60]}>
+                {percentage => (
+                  <CircularProgressbar
+                    value={percentage}
+                    text={`${60}%`}
+                    styles={buildStyles({
+                      pathTransition:
+                        percentage === 0 ? "none" : "stroke-dashoffset 0.5s ease 0s"
+                    })}
+                  />
+                )}
+              </ChangingProgressProvider>
+              <h3>WordPress</h3>
                 </div>
               </div>
-            </div>
           </div>
         </section>
 
@@ -150,9 +210,11 @@ function App() {
             <div className='slider'>
 
               <button className='left-btn' onClick={leftBtn}>{left}</button>
-              <button className='right-btn' onClick={rightBtn}>{right}</button>
+              
 
               <Project slider={slider} project={project}/>
+
+              <button className='right-btn' onClick={rightBtn}>{right}</button>
 
             {/* 1. < 클릭시 a.id값이 -1됨. > 클릭시 a.id값이 +1 됨 - ok
             2. 0에서 < 누르면 가장 높은 id값으로 이동
@@ -181,19 +243,11 @@ function App() {
           </div>
         </section>
 
-        {/* contact */}
-        <section id="contact">
-          <div className='sec-box'>
-            <h2>Contact Me</h2>
-            <p>Email : ngni4856@gmail.com</p>
-            <p>Phone : 010-2492-0798</p>
-          </div>
-        </section>
 
         {/* footer */}
         <footer id="footer">
           <div className='sec-box'>
-            <p>ⓒ Hyeji Namgung 2021</p>
+            <p>ⓒ Hyeji Namgung 2022</p>
           </div>
         </footer>
     </div>
@@ -204,10 +258,12 @@ function Project(props) {
   return (
     <div className='project-container'>
       <img src={'/preview/preview' + (props.slider+1) + '.jpg'}></img>
+      <div className='txt-box'>
       <h4>{props.project[props.slider].title}</h4>
-      <p>{props.project[props.slider].content}</p>
-      <p>{props.project[props.slider].explain}</p>
-      <p>{props.project[props.slider].language}</p>
+        <p className='content-txt'>{props.project[props.slider].content}</p>
+        <p>{props.project[props.slider].explain}</p>
+        <p className='use-txt'>{props.project[props.slider].language}</p>
+      </div>
     </div>
   )
 }
