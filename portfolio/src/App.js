@@ -8,6 +8,8 @@ import Profile from './profile.png';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
+import {Link} from "react-scroll";
+
 import ReactDOM from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight,faChevronLeft } from '@fortawesome/free-solid-svg-icons'
@@ -54,27 +56,18 @@ function App() {
 
   return (
     <div className="App">
-      {/* 포트폴리오 사이트에 들어가야할 것
-      1. 이력서 pdf 다운로드
-      2. 자기소개 (연락처 등 포함)
-      3. 기술 스택 
-        3-1. 다룰 수 있는 기술 (HTML : 중, CSS : 중, JS : 하, REACT : 하)
-      4. 교육 이력 (인터넷 강의 등)
-      5. 프로젝트
-        5-1. 깃허브 및 프리뷰 링크
-        5-2. 작업하면서 막혔던 부분, 해결한 방법 간단하게 보기좋게 입력 */}
 
         {/* header */}
         <nav id="nav">
           <div className="navbar">
             <div className="logo"></div>
             <ul className="menu">
-              <li className='menu-item active'>ABOUT</li>
-              <li className='menu-item'>CAREER</li>
-              <li className='menu-item'>SKILL</li>
-              <li className='menu-item'>PROJECT</li>
-              <li className='menu-item'>STUDY</li>
-              <li className='menu-item'>CONTACT</li>
+              <li><Link className='menu-item' activeClass="active" to="about" spy={true} smooth={true}>ABOUT</Link></li>
+              <li><Link className='menu-item' activeClass="active" to="intro" spy={true} smooth={true}>INTRODUCTION</Link></li>
+              <li><Link className='menu-item' activeClass="active" to="career" spy={true} smooth={true}>CAREER</Link></li>
+              <li><Link className='menu-item' activeClass="active" to="skill" spy={true} smooth={true}>SKILLS</Link></li>
+              <li><Link className='menu-item' activeClass="active" to="project" spy={true} smooth={true}>PROJECT</Link></li>
+              <li><Link className='menu-item' activeClass="active" to="study" spy={true} smooth={true}>STUDY</Link></li>
             </ul>
           </div>
         </nav>
@@ -114,7 +107,7 @@ function App() {
               워드프레스, HTML, CSS, JavaScript를 사용한 웹퍼블리싱
             </p>
             <p className='career-cont'>
-              워드프레스를 사용하여 홈페이지를 세팅, 제작하는 법을 배웠으며, 그로인한 HTML, CSS 능력이 향상되었다.
+              워드프레스를 사용하여 홈페이지를 세팅하는 법을 배웠으며, 그로인한 HTML, CSS 능력이 향상되었다.
             </p>
           </div>
         </section>
@@ -140,7 +133,7 @@ function App() {
               <h3>HTML</h3>
                 </div>
                 <div className="progress">
-                <ChangingProgressProvider values={[0, 60]}>
+                <ChangingProgressProvider values={[0, 55]}>
                 {percentage => (
                   <CircularProgressbar
                     value={percentage}
@@ -155,7 +148,7 @@ function App() {
               <h3>CSS </h3>
                 </div>
                 <div className="progress">
-                <ChangingProgressProvider values={[0, 60]}>
+                <ChangingProgressProvider values={[0, 35]}>
                 {percentage => (
                   <CircularProgressbar
                     value={percentage}
@@ -170,7 +163,7 @@ function App() {
               <h3>JavaScript</h3>
                 </div>
                 <div className="progress">
-                <ChangingProgressProvider values={[0, 60]}>
+                <ChangingProgressProvider values={[0, 25]}>
                 {percentage => (
                   <CircularProgressbar
                     value={percentage}
@@ -185,11 +178,11 @@ function App() {
               <h3>React</h3>
                 </div>
                 <div className="progress">
-                <ChangingProgressProvider values={[0, 60]}>
+                <ChangingProgressProvider values={[0, 50]}>
                 {percentage => (
                   <CircularProgressbar
                     value={percentage}
-                    text={`${60}%`}
+                    text={`${50}%`}
                     styles={buildStyles({
                       pathTransition:
                         percentage === 0 ? "none" : "stroke-dashoffset 0.5s ease 0s"
